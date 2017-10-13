@@ -1,0 +1,243 @@
+<html>
+
+    <head>
+
+        <title>CGI Projecto 1</title>
+
+            <!-- Carregar as bibliotecas -->
+        <script type="text/javascript" src="Common/webgl-utils.js"></script>
+        <script type="text/javascript" src="Common/initShaders.js"></script>
+        <script type="text/javascript" src="Common/MV.js"></script>
+        <script type="text/javascript" src="projecto.js"> </script> 
+
+        <script id="vertex-shader" type="x-shader/x-vertex">
+            attribute vec4 vPosition;
+            attribute vec4 vColor;
+            attribute float vSize;
+            attribute float vTheta;
+            attribute float vShape;
+            
+            varying vec4 fragColor;
+            varying float fShape;
+            varying float fTheta;
+            
+
+            
+            void main(){
+                gl_Position = vPosition;
+                gl_PointSize = vSize;
+                fragColor = vColor;
+                fShape = vShape;
+                fTheta = vTheta;
+            }
+        </script>
+    
+        <script id="fragment-shader" type="x-shader/x-fragment">
+            precision mediump float;
+            
+            varying vec4 fragColor;
+            varying float fShape; 
+            varying float fTheta;
+            
+            uniform float time;
+            
+            mat2 rotate2d(float _angle){
+                return mat2(cos(_angle*time),-sin(_angle*time), sin(_angle*time),cos(_angle*time));
+            }
+            
+            vec2 getPos(vec2 p) {
+                return (vec2(2.0, -2.0) * p - vec2(1.0, -1.0));
+            }            
+            
+            vec4 circle(vec4 clr, vec2 pos) {
+                float dist = distance( vec2(0.0,0.0), pos );
+                
+                if (dist >1.0)
+                  discard;
+                  
+                if (((pos[1]-0.5) > pos[0]) 
+                    && ((pos[1]-0.5) > -(pos[0])) )
+                  discard;
+                    
+                return clr; 
+            }
+                   
+            vec4 star(vec4 clr, vec2 pos){           
+               
+                float dist = distance( vec2(1.0,1.0), pos );
+                float dist1 = distance( vec2(-1.0,-1.0), pos );
+                float dist2 = distance( vec2(-1.0,1.0), pos );
+                float dist3 = distance( vec2(1.0,-1.0), pos );
+
+                if(dist<1.0){
+                    discard;
+                }
+                if(dist1<1.0){
+                    discard;
+                }
+                if(dist2<1.0){
+                    discard;
+                }
+                if(dist3<1.0){
+                    discard;
+                }
+                return clr;
+
+            }
+            
+            vec4 cruz(vec4 clr, vec2 pos){
+                if(pos[0]<-0.25 && pos[1]>0.25)
+                    discard;
+                if(pos[0]<-0.25 && pos[1]<-0.25)
+                    discard;
+                if(pos[0]>0.25 && pos[1]>0.25)
+                    discard;
+                if(pos[0]>0.25 && pos[1]<-0.25)
+                    discard;
+                  
+                return clr;
+            }
+            
+            vec4 xadrez (vec4 clr, vec2 pos){
+                if(-1.0<pos[0] && pos[0] <-0.75){
+                    if( (0.75>pos[1]&& pos[1]>0.5) || (0.25>pos[1] && pos[1]>0.0) || (-0.25>pos[1] && pos[1]>-0.5) || (-0.75>pos[1] && pos[1]>-1.0))
+                        discard;
+                }
+                if(-0.5<pos[0] && pos[0] <-0.25){
+                    if( (0.75>pos[1]&& pos[1]>0.5) || (0.25>pos[1] && pos[1]>0.0) || (-0.25>pos[1] && pos[1]>-0.5) || (-0.75>pos[1] && pos[1]>-1.0))
+                        discard;
+                }
+                if(0.0<pos[0] && pos[0] <0.25){
+                    if( (0.75>pos[1]&& pos[1]>0.5) || (0.25>pos[1] && pos[1]>0.0) || (-0.25>pos[1] && pos[1]>-0.5) || (-0.75>pos[1] && pos[1]>-1.0))
+                        discard;
+                }
+                if(0.5<pos[0] && pos[0] <0.75){
+                    if( (0.75>pos[1]&& pos[1]>0.5) || (0.25>pos[1] && pos[1]>0.0) || (-0.25>pos[1] && pos[1]>-0.5) || (-0.75>pos[1] && pos[1]>-1.0))
+                        discard;
+                }
+                
+                if(-0.75<pos[0] && pos[0] <-0.5){
+                    if( (1.0>pos[1]&& pos[1]>0.75) || (0.5>pos[1] && pos[1]>0.25) || (0.0>pos[1] && pos[1]>-0.25) || (-0.5>pos[1] && pos[1]>-0.75))
+                        discard;
+                }
+                 if(-0.25<pos[0] && pos[0] <-0.0){
+                    if( (1.0>pos[1]&& pos[1]>0.75) || (0.5>pos[1] && pos[1]>0.25) || (0.0>pos[1] && pos[1]>-0.25) || (-0.5>pos[1] && pos[1]>-0.75))
+                        discard;
+                }
+                 if(0.25<pos[0] && pos[0] <0.5){
+                    if( (1.0>pos[1]&& pos[1]>0.75) || (0.5>pos[1] && pos[1]>0.25) || (0.0>pos[1] && pos[1]>-0.25) || (-0.5>pos[1] && pos[1]>-0.75))
+                        discard;
+                }
+                 if(0.75<pos[0] && pos[0] <1.0){
+                    if( (1.0>pos[1]&& pos[1]>0.75) || (0.5>pos[1] && pos[1]>0.25) || (0.0>pos[1] && pos[1]>-0.25) || (-0.5>pos[1] && pos[1]>-0.75))
+                        discard;
+                }
+                return clr;
+                }
+               
+                        
+            void main() {     
+            
+                vec2 pos = rotate2d(fTheta)*getPos(gl_PointCoord);
+                if ( fShape == 1.0)
+                    gl_FragColor = circle(fragColor, pos);
+                else if(fShape == 2.0){
+                    gl_FragColor = star(fragColor, pos);
+                }
+                else if(fShape == 3.0){
+                    gl_FragColor = cruz(fragColor, pos);
+                }
+                else if(fShape == 4.0){
+                    gl_FragColor = xadrez(fragColor, pos);
+                }
+            }
+        </script>
+        
+        <style type="text/css">
+            #optionMenu {
+                width: 150px;
+                position: absolute;
+                left:600px;
+                top: 10px;
+                text-align: center;
+                border: 10px solid;
+                border-color: rgba(0,0,0,1.0);
+            }
+            
+            #automaticButton {
+                width: 150px;
+                height: 50px;
+                position: absolute;
+                top: 350px;
+                background-color: red;
+                text-align:center;
+                line-height: 50px;
+                color: white;
+                font-weight: bold;
+            }
+            
+            #autoRandom{
+                width: 150px;
+                height: 50px;
+                position: absolute;
+                top: 400px;
+            }
+        
+            #shapeMenu {
+                width: 150px;
+                position: absolute;
+                top:450px;
+                margin: auto;
+                text-align:center;
+                font-weight: bold;
+            }
+            
+        </style>    
+        
+    </head>
+
+    <body>
+
+        <canvas id="gl-canvas" width="512" height="512" onmousedown="createShape(event)" style="border: 1px solid black">
+            Oops... your browser doesn't support the HTML5 canvas element"
+        </canvas>
+        <!-- Options -->
+        <div id = "optionMenu">
+            
+            <!-- Color Selecion -->
+            <p style="color:red;"> Red</p>
+            <input type="range" id="redRange" value="0" min="0" max="255" step="1" onchange="updateRed()"> 
+            <p style="color:green;"> Green</p>
+            <input type="range" id="greenRange" value="0" min="0" max="255" step="1" onchange="updateGreen()">
+            <p style="color:blue;"> Blue</p>
+            <input type="range" id="blueRange" value="0" min="0" max="255" step="1" onchange="updateBlue()">
+            <p style="color:black;">Transparency</p>
+            <input type="range" id="alfaRange" value="255" min="0" max="255" step="1" onchange="updateAlfa()">
+            <p></p>
+            
+            
+            <!-- Automatic Button -->
+            <div id="automaticButton">
+                Automatic Placing!
+            </div> 
+            
+            <div id="autoRandom">
+            <input id="autoMode" type="checkbox" onchange="checkUpdate()"> 
+                random mode
+            </div>
+            
+            <div id="shapeMenu">
+                Select a Shape!
+                <!-- List of Shapes to choose from -->    
+                <<select id="shapeSelector"> 
+                    <option value = "Circle"> Circle </option>>
+                    <option value = "Star"> Star </option>
+                    <option value = "Cruz"> Cruz </option>
+                    <option value = "Xadrez"> Xadrez </option>
+                </select>
+            </div>
+            
+        </div>        
+
+    </body>
+</html>
