@@ -1,0 +1,359 @@
+:root {
+    --purple: rgb(119, 106, 148);
+    --purple-darker: rgb(67, 60, 82);
+    --purple-lighter: rgb(194, 179, 228);
+
+    --dark: rgb(38, 38, 38);
+    --light: rgb(240, 235, 253);
+
+    --font-primary: 'Quicksand', sans-serif;
+}
+
+body {
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    background-color: var(--light);
+}
+
+* {
+    font-family: var(--font-primary);
+    font-size: 16px;
+    transition: color 250ms ease-in-out,
+        border 250ms ease-in-out,
+        text-decoration 250ms ease-in-out,
+        background-color 250ms ease-in-out,
+        text-shadow 250ms ease-in-out;
+}
+
+.promo {
+    position: relative;
+    width: 80vw;
+    border-radius: 0.5em;
+    background-color: var(--purple-lighter);
+    padding: 0.5em;
+    color: var(--purple-darker);
+    text-align: center;
+    font-size: 0.85em;
+    font-weight: 900;
+}
+
+.promo .close {
+    position: absolute;
+    right: 0.5em;
+    cursor: pointer;
+    transition: color 50ms ease-in-out !important;
+}
+
+.promo .close:hover {
+    color: white;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+
+header h1 {
+    margin: 0;
+}
+
+.navbar {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: var(--purple);
+    padding: 1em;
+}
+
+.navbar nav a {
+    padding: 0 1em 0 1em;
+    border-right: 1px solid transparent;
+    border-left: 1px solid transparent;
+}
+
+.navbar nav a:not(:last-of-type) {
+    margin-right: 1.75em;
+}
+
+.navbar a,
+.navbar i {
+    color: white;
+    text-decoration: none;
+}
+
+.navbar a:hover,
+.navbar div i:hover {
+    color: black;
+    cursor: pointer;
+}
+
+.navbar a:hover {
+    border-right: 1px solid var(--purple-darker);
+    border-left: 1px solid var(--purple-darker);
+}
+
+.navbar div {
+    position: absolute;
+    right: 10vw;
+}
+
+.navbar div i {
+    font-size: 1.25em;
+    padding-left: 0.5em;
+}
+
+
+
+.breadcrumbs {
+    width: 100%;
+    padding-left: 20vw;
+    background-color: var(--light);
+}
+
+.breadcrumbs a {
+    color: var(--purple-darker);
+    text-decoration: none;
+    transition: color 50ms;
+}
+
+.breadcrumbs a:hover {
+    color: black;
+    text-decoration: underline;
+}
+
+/* BODY */
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 3em;
+}
+
+.produto {
+    width: 80vw;
+    display: flex;
+    justify-content: center;
+}
+
+.produto .foto {
+    min-width: 40%;
+    /* background-color: var(--purple-darker); */
+    display: flex;
+    justify-content: center;
+}
+.produto .foto img {
+    width: 60%;
+}
+
+.produto .descricao {
+    margin-left: 5%;
+}
+
+.produto .descricao h2 {
+    font-size: 1.75em;
+    color: var(--purple-darker);
+}
+
+.produto .descricao p {
+    margin: 0;
+}
+
+
+.produto .descricao .preco {
+    display: flex;
+    align-items: center;
+    padding-left: 0.5em;
+    position: relative;
+}
+
+.produto .descricao p:not(.antigo) {
+    font-weight: 900;
+    font-size: 1.25em;
+}
+
+.produto .descricao .atual {
+    color: var(--purple);
+}
+
+.produto .descricao .antigo {
+    text-decoration: line-through;
+    margin-left: 1.25em;
+    margin-right: 40%;
+}
+
+.produto .descricao .desconto {
+    position: absolute;
+    right: 0;
+    padding: 0.3em;
+
+    border: 2px solid var(--purple);
+    border-radius: 2px;
+    background-color: white;
+}
+
+
+
+
+.produto .descricao .descritivo {
+    margin-top: 2em;
+}
+
+.produto .descricao .descritivo p {
+    font-size: 1em;
+    font-weight: 500;
+    margin-bottom: 0.5em;
+}
+
+.produto .descricao .descritivo p:last-of-type {
+    font-weight: 600;
+    margin-bottom: 0;
+}
+
+.produto .precart {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1em;
+}
+
+.produto .fav {
+    padding-left: 0.5em;
+
+    display: flex;
+    align-items: center;
+}
+
+.produto .fav i {
+    font-size: 1.25em;
+    color: white;
+    text-shadow: 0 0 2px var(--purple-darker);
+    margin-right: 1em;
+}
+
+.produto .fav i:hover {
+    color: var(--purple);
+    text-shadow: 0 0 0 transparent;
+    cursor: pointer;
+}
+
+.produto .fav select {
+    margin-left: 0.25em;
+    width: 3em;
+}
+
+.produto .ref {
+    font-size: 0.85em !important;
+    font-weight: 400 !important;
+}
+
+.produto .share i {
+    color: var(--purple);
+    font-size: 1.25em;
+    margin-right: 0.85em;
+}
+
+.produto .share i:hover {
+    color: black;
+}
+
+.produto .cart {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1.5em;
+}
+
+button {
+    padding: 0.75em;
+    border: 2px solid transparent;
+    border-radius: 2px;
+    background-color: var(--purple-darker);
+    font-weight: 600;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    border: 2px solid var(--purple);
+    background-color: white;
+    color: var(--purple);
+}
+
+
+
+
+.info table {
+    width: 80vw;
+    margin-top: 3em;
+    margin-bottom: 3em;
+}
+
+.info tr:nth-child(2n) {
+    margin-bottom: 1em;
+}
+
+.info th {
+    text-align: left;
+    padding: 1em;
+    color: white;
+    background-color: var(--purple);
+}
+
+.info td {
+    text-align: left;
+    padding: 1.25em;
+    color: black;
+    background-color: white;
+}
+
+.info td.spacer {
+    padding: 0.5em;
+    background-color: transparent;
+}
+
+.info ul {
+    margin: 0 0 0.5em 0;
+}
+
+
+
+
+.newsletter {
+    width: 100vw;
+    background-color: var(--purple-lighter);
+    padding: 2em 0;
+    display: flex;
+    justify-content: center;
+}
+.newsletter .wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: fit-content;
+}
+.newsletter h2 {
+    font-size: 1.75em;
+    color: var(--purple-darker);
+    font-weight: 600;
+}
+.newsletter .wrapper div{
+    width: 100%;
+}
+.newsletter input {
+    font-family: var(--font-primary), "Font Awesome\ 5 Free";
+    width: 68.5%;
+    height: 100%;
+    padding: 0.5em 0.5em !important;
+}
+.newsletter button {
+    width: 30%;
+    padding: 0.5em;
+}
