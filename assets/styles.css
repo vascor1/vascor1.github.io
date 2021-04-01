@@ -357,3 +357,47 @@ button:hover {
     width: 30%;
     padding: 0.5em;
 }
+
+
+footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    padding: 2rem;
+    padding-bottom: 0.25rem;
+    background-color: var(--purple);
+}
+footer section {
+    display: flex;
+    justify-content: center;    
+    gap: 15%;
+    width: 60%;
+}
+footer div {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+}
+footer div h2 {
+    font-size: 1.5rem;
+    color: black;
+    font-weight: 600;
+}
+footer div nav {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+footer div nav a {
+    color: white;
+    text-decoration: none;
+    margin-bottom: 0.4em;
+}
+footer div nav a:hover {
+    color: black;
+}
+
+footer .rights {
+    margin-top: 2rem;;
+}
