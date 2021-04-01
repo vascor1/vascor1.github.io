@@ -18,6 +18,7 @@ body {
 }
 
 * {
+    box-sizing: border-box;
     font-family: var(--font-primary);
     font-size: 16px;
     transition: color 250ms ease-in-out,
@@ -154,6 +155,9 @@ main {
 
 .produto .descricao {
     margin-left: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .produto .descricao h2 {
@@ -343,9 +347,11 @@ button:hover {
     font-size: 1.75em;
     color: var(--purple-darker);
     font-weight: 600;
+    margin: 1rem 0;
 }
 .newsletter .wrapper div{
     width: 100%;
+    margin-bottom: 1rem;
 }
 .newsletter input {
     font-family: var(--font-primary), "Font Awesome\ 5 Free";
