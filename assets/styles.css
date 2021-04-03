@@ -13,7 +13,6 @@ body {
     width: 100vw;
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
     background-color: var(--light);
 }
 
@@ -102,6 +101,18 @@ header h1 {
 .navbar div {
     position: absolute;
     right: 10vw;
+
+}
+
+@media (max-width: 1300px) {
+    .navbar {
+        min-height: 100px;
+    }
+    .navbar div {
+        position: absolute;
+        right: unset;
+        bottom: 1em;
+    }
 }
 
 .navbar div i {
@@ -148,6 +159,7 @@ main {
     /* background-color: var(--purple-darker); */
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 .produto .foto img {
     width: 60%;
@@ -356,7 +368,6 @@ button:hover {
 .newsletter input {
     font-family: var(--font-primary), "Font Awesome\ 5 Free";
     width: 68.5%;
-    height: 100%;
     padding: 0.5em 0.5em !important;
 }
 .newsletter button {
