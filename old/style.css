@@ -1,0 +1,39 @@
+
+body {
+  background-color: lightblue;  
+}
+
+h1 {
+    text-align: center;
+    font-size: 70px;
+}
+
+h1:hover {
+transform: skewX(-10deg);
+transition:transform .3s ease-in-out;
+}
+
+h2:hover {
+transform: skewX(-10deg);
+transition:transform .3s ease-in-out;
+}
+
+h2 {
+    text-align: center;
+    font-size: 40px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+p {
+  margin: 20px 100px;
+  text-align: left;
+  font-size: 20px;
+}
+
+h3 {
+  margin: 20px 100px;
+  text-align: left;
+  font-size: 30px;
+}
+
