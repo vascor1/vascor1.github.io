@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/products/2", {data:[{product:{id:2,Title:"Vue Apps",Description:"We make the best Vue APPS!",published_at:"2021-04-19T02:41:44.414Z",created_at:"2021-04-19T02:41:42.068Z",updated_at:"2021-04-19T02:41:44.466Z"}}],fetch:{},mutations:void 0});
